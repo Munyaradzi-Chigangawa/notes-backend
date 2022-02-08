@@ -20,5 +20,17 @@ def getRoutes(request):
             'body' : {'body': ""},
             'description' : 'Creates a new post with specified info'
         },
+        {
+            'Endpoint' : '/notes/id/update',
+            'method' : 'PUT',
+            'body' : {'body': ""},
+            'description' : 'Updates a note with text input'
+        }
+        {
+            'Endpoint' : '/notes/id/delete',
+            'method' : 'DELETE',
+            'body' : None,
+            'description' : 'Deletes the note'
+        }
     ]
-    return JsonResponse(routes)
+    return JsonResponse(routes, safe = False)
