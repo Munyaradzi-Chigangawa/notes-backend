@@ -1,3 +1,4 @@
+from ast import Delete
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import NoteSerializer
@@ -63,3 +64,17 @@ def createNote(request):
     )
     serializer = NoteSerializer(note, many=False)
     return Response(serializer.data)
+
+@api_view(['PUT'])
+def updateNote(request, pk):
+    data = request.data
+
+    note = Note.objects.get(id = pk)
+    serializer = NoteSerializer(note, data = request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+@api_view(['DELETE'])
+def deleteNote(request):
+    return Response('Note was deleted!')
