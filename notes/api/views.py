@@ -76,5 +76,7 @@ def updateNote(request, pk):
     return Response(serializer.data)
 
 @api_view(['DELETE'])
-def deleteNote(request):
+def deleteNote(request, pk):
+    note = Note.objects.get(id = pk)
+    note.delete()
     return Response('Note was deleted!')
